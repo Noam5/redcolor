@@ -68,6 +68,9 @@ def insert_data_if_not_present(json_data: list, sheet_name: str = 'alerts'):
         except gspread.exceptions.APIError:
             time.sleep(10)
             continue
+        except requests.exceptions.ConnectionError:
+            time.sleep(10)
+            continue
     
     # Attempt to get all records
     for i in range(4):
